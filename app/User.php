@@ -24,12 +24,23 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function tweets(){
+    /**
+     * One user many tweets
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function tweets()
+    {
         return $this->hasMany(Tweet::class);
     }
-    
-    public static function findByUsername($username){
-        return self::where('username',$username)->first();
+
+    /**
+    * Find by userrname
+    *
+    */
+    public static function findByUsername($username)
+    {
+        return self::where('username', $username)->first();
     }
-    
+
 }
